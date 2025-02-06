@@ -81,3 +81,4 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Login placeholder** - Placeholder for auth on the login page.
 - [x] **DB data placeholder** - High scores displayed on scores page.
 - [x] **WebSocket placeholder** - The play page has a text area that will show what other user notifications.
+# simon-html
