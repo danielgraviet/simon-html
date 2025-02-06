@@ -44,8 +44,8 @@ export default function App() {
 
                 <footer className='bg-dark text-white-50'>
                     <div className='container-fluid'>
-                        <span className='text-reset'><a href='https://github.com/webprogramming260/simon-react'>GitHub</a></span>
-                        <a className='text-reset' href='https://github.com/webprogramming260/simon-react'>
+                        <span className='text-reset'><a href='https://github.com/danielgraviet/simon-html'>GitHub</a></span>
+                        <a className='text-reset' href='https://github.com/danielgraviet/simon-html'>
                             Source
                         </a>
                     </div>
