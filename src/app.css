@@ -47,6 +47,12 @@ body {
   footer a {
     float: right;
   }
+
+  .footer-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
   
   @media (max-height: 600px) {
     header {
