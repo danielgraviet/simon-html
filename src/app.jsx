@@ -71,11 +71,11 @@ function App() {
           <Route path='*' element={<NotFound />} />
         </Routes>
 
-        <footer className='bg-dark text-dark text-muted'>
+        <footer className='bg-dark text-light'>
           <div className='container-fluid'>
-            <span className='text-reset'>Author Name(s)</span>
-            <a className='text-reset' href='https://github.com/webprogramming260/simon-react'>
-              Source
+            <span className='text-reset'>Daniel Thi Graviet</span>
+            <a className='text-reset' href='https://github.com/danielgraviet/simon-html'>
+              GitHub
             </a>
           </div>
         </footer>
