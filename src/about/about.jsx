@@ -1,38 +1,54 @@
 import React from 'react';
-import "./about.css";
+import './about.css';
 
-export function About() {
+export function About(props) {
+  const [imageUrl, setImageUrl] = React.useState('data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=');
+  const [quote, setQuote] = React.useState('Loading...');
+  const [quoteAuthor, setQuoteAuthor] = React.useState('unknown');
 
-    const [imageUrl, setImageUrl] = React.useState("");
-    const [quote, setQuote] = React.useState("");
-    const [quoteAuthor, setQuoteAuthor] = React.useState("");
+  // We only want this to render the first time the component is created and so we provide an empty dependency list.
+  React.useEffect(() => {
+    const random = Math.floor(Math.random() * 1000);
+    fetch(`https://picsum.photos/v2/list?page=${random}&limit=1`)
+      .then((response) => response.json())
+      .then((data) => {
+        const containerEl = document.querySelector('#picture');
 
-    React.useEffect(() => {
-        setImageUrl("../../public/placeholder.jpg");
-        setQuote("Words are cheap. Show me the code.");
-        setQuoteAuthor("Linus Torvalds");
-    }, []);
+        const width = containerEl.offsetWidth;
+        const height = containerEl.offsetHeight;
+        const apiUrl = `https://picsum.photos/id/${data[0].id}/${width}/${height}?grayscale`;
+        setImageUrl(apiUrl);
+      })
+      .catch();
 
-    return (
-        <main className="container-fluid bg-secondary text-center">
-            <div>
-                <div id="picture" className="picture-box"><img src={imageUrl} alt="random" /></div>
+    fetch('https://quote.cs260.click')
+      .then((response) => response.json())
+      .then((data) => {
+        setQuote(data.quote);
+        setQuoteAuthor(data.author);
+      })
+      .catch();
+  }, []);
 
-                <p>
-                    Simon is a repetitive memory game where you follow the demonstrated color sequence until you make a mistake.
-                    The longer the sequence you repeat, the greater your score.
-                </p>
+  return (
+    <main className='container-fluid bg-secondary text-center'>
+      <div>
+        <div id='picture' className='picture-box'>
+          <img src={imageUrl} alt='stock background' />
+        </div>
 
-                <p>
-                    The name Simon is a registered trademark of Milton-Bradley. Our use of the name and the game is for non-profit
-                    educational use only. No part of this code or program should be used outside of that definition.
-                </p>
+        <p>Simon is a repetitive memory game where you follow the demonstrated color sequence until you make a mistake. The longer the sequence you repeat, the greater your score.</p>
 
-                <div id="quote" className="quote-box bg-light text-dark">
-                    <p className="quote">{quote}</p>
-                    <p className="author">{quoteAuthor}</p>
-                </div>
-            </div>
-        </main>
-    );
+        <p>
+          The name Simon is a registered trademark of Milton-Bradley. Our use of the name and the game is for non-profit educational use only. No part of this code or application may be used outside
+          of that definition.
+        </p>
+
+        <div className='quote-box bg-light text-dark'>
+          <p className='quote'>{quote}</p>
+          <p className='author'>{quoteAuthor}</p>
+        </div>
+      </div>
+    </main>
+  );
 }

@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 import './scores.css';
@@ -9,10 +8,11 @@ export function Scores() {
   // Demonstrates calling a service asynchronously so that
   // React can properly update state objects with the results.
   React.useEffect(() => {
-    const scoresText = localStorage.getItem('scores');
-    if (scoresText) {
-      setScores(JSON.parse(scoresText));
-    }
+    fetch('/api/scores')
+      .then((response) => response.json())
+      .then((scores) => {
+        setScores(scores);
+      });
   }, []);
 
   // Demonstrates rendering an array with React
